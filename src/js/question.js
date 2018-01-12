@@ -41,17 +41,21 @@ export class Question {
         if (fields.length > 0) {
             let input = [];
             for(let i = 0; i<fields.length;i++) {
+                fields[i].classList.remove('errorInput');
                 if(fields[i].value != '') {
                     input.push(true);
                     if(fields[i].getAttribute('type') === 'email') {
                         if(validateEmail(fields[i].value) == true) {
                             input.push(true);
+                            fields[i].classList.remove('errorInput');
                         } else {
                             input.push(false);
+                            fields[i].classList.add('errorInput');
                         }
                     }
                 } else {
                     input.push(false);
+                    console.log(fields[i].classList.add('errorInput'));
                 }
             }
 
