@@ -24,9 +24,9 @@ export class Question {
             let test = re.test(email.toLowerCase());
 
             if(!test) {
-                console.log('not valid');
+                return false;
             } else {
-                console.log('valid');
+                return true;
             }
         }
 
@@ -34,24 +34,32 @@ export class Question {
             curr.classList.remove('showQuestion');
             curr.classList.add('hideQuestion');
             let next = this.getAttribute('data-to');
-            console.log('next: '+next);
             document.getElementById(next).classList.remove('hideQuestion');
             document.getElementById(next).classList.add('showQuestion');
         }
 
         if (fields.length > 0) {
-            console.log('with fields');
+            let input = [];
             for(let i = 0; i<fields.length;i++) {
                 if(fields[i].value != '') {
-                    if(fields[i].getAttribute('name') === 'email') {
-                        validateEmail(fields[i].value)
-                    } else {
-                        nextQuestion.bind(this)();
+                    input.push(true);
+                    if(fields[i].getAttribute('type') === 'email') {
+                        if(validateEmail(fields[i].value) == true) {
+                            input.push(true);
+                        } else {
+                            input.push(false);
+                        }
                     }
-                } 
-            }            
+                } else {
+                    input.push(false);
+                }
+            }
+
+            // check array for false
+            if (!input.includes(false)) {
+                nextQuestion.bind(this)();
+            }           
         } else {
-            console.log('no fields');
             nextQuestion.bind(this)();
         }
 
@@ -62,7 +70,6 @@ export class Question {
     previous() {
         let curr =  this.parentNode.parentNode;
         let back = this.getAttribute('data-from');
-        console.log('back: '+back);
         curr.classList.remove('showQuestion');
         curr.classList.add('hideQuestion');
         document.getElementById(back).classList.remove('hideQuestion');
