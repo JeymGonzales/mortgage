@@ -1,0 +1,70 @@
+@import "colors";
+@import "buttons";
+@import "inputs";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#randomInt {
+  background-color: $main;
+  border: 1px solid black;
+  color: white;
+  padding: 5px;
+}
+
+#randomRange {
+  background-color: $secondary;
+  border: 1px solid black;
+  color: white;
+  padding: 5px;
+}
+
+.question {
+	padding: 30px 20px;
+	&:nth-child(odd) {
+		background-color: #e8a2a2;
+	}
+}
+
+.grandParent {
+  text-decoration: none;
+}
+
+.hideQuestion {
+  display: none !important;
+}
+
+.showQuestion {
+  display: block !important;
+}
+
+
+
+.parent {
+  display: none;
+  background-color: #b2a4ce;
+  padding: 10px;
+  width: 100%;
+  text-decoration: none;
+  &:first-child {
+    display: block;
+  }
+
+}
+
+.js-next {
+  padding: 10px;
+  background-color: $main;
+  color: white;
+  &:hover {
+    cursor: pointer;
+  }  
+}
+
+.js-back {
+  @extend .js-next;
+  display: inline-block;
+}
